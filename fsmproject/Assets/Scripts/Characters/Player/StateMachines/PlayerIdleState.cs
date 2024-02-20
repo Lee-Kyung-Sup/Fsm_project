@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerBaseState
+public class PlayerIdleState : PlayerGroundedState
 {
     public PlayerIdleState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
@@ -24,5 +24,11 @@ public class PlayerIdleState : PlayerBaseState
     public override void Update()
     {
         base.Update();
+
+        if (stateMachine.MovementInput != Vector2.zero)
+        {
+            OnMove();
+            return;
+        }
     }
 }
